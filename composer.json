@@ -2,5 +2,10 @@
   "require": {
     "doctrine/orm": "3.3.3",
     "symfony/cache": "^6.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "src\\": "app/"
+    }
   }
 }
