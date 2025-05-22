@@ -54,7 +54,7 @@ class ContatoController
         include __DIR__ . '/../View/contato/create.php';
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
         $pessoas = $this->entityManager->getRepository(\src\Model\Pessoa::class)->findAll();
@@ -98,7 +98,7 @@ class ContatoController
 
 
 
-    public function delete($id)
+    public function delete(int $id): void
     {
         $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
         if (!$contato) {
@@ -107,11 +107,15 @@ class ContatoController
             exit;
         }
 
-        $this->entityManager->remove($contato);
-        $this->entityManager->flush();
-
-        header('Location: ?controller=contato&action=list');
-        exit;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->entityManager->remove($contato);
+            $this->entityManager->flush();
+            header('Location: ?controller=contato&action=list');
+            exit;
+        } else {
+            echo 'Invalid request method.';
+            exit;
+        }
     }
 
 
