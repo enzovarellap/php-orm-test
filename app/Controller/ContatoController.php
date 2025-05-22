@@ -57,6 +57,8 @@ class ContatoController
     public function edit($id)
     {
         $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
+        $pessoas = $this->entityManager->getRepository(\src\Model\Pessoa::class)->findAll();
+
         if (!$contato) {
             header('HTTP/1.0 404 Not Found');
             echo 'Contato não encontrado';
@@ -68,15 +70,22 @@ class ContatoController
             $descricao = $_POST['descricao'] ?? '';
             $pessoaId = $_POST['pessoa_id'] ?? '';
 
-            if (empty($tipo) || empty($descricao) || empty($pessoaId)) {
-                $error = 'Tipo, Descrição e Pessoa ID são obrigatórios.';
+            if ($tipo === '' || $descricao === '' || $pessoaId === '') {
+                $error = 'Tipo, Descrição e Pessoa são obrigatórios.';
+                include __DIR__ . '/../View/contato/edit.php';
+                return;
+            }
+
+            $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($pessoaId);
+            if (!$pessoa) {
+                $error = 'Pessoa inválida.';
                 include __DIR__ . '/../View/contato/edit.php';
                 return;
             }
 
             $contato->setTipo($tipo);
             $contato->setDescricao($descricao);
-            $contato->setPessoaId($pessoaId);
+            $contato->setPessoa($pessoa);
 
             $this->entityManager->flush();
 

@@ -9,17 +9,17 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($contatos as $contao): ?>
+    <?php foreach ($contatos as $contato): ?>
         <tr>
-            <td><?= htmlspecialchars($contao->getId()) ?></td>
-            <td><?= htmlspecialchars($contao->getFormatedTipo()) ?></td>
-            <td><?= htmlspecialchars($contao->getDescricao()) ?></td>
-            <td><?= htmlspecialchars($contao->getPessoa()->getNome()) ?></td>
+            <td><?= htmlspecialchars($contato->getId()) ?></td>
+            <td><?= htmlspecialchars($contato->getFormatedTipo()) ?></td>
+            <td><?= htmlspecialchars($contato->getDescricao()) ?></td>
+            <td><?= htmlspecialchars($contato->getPessoa()->getNome()) ?></td>
             <td>
-                <a href="?controller=pessoa&action=edit&id=<?= htmlspecialchars($contao->getId()) ?>">
+                <a href="?controller=contato&action=edit&id=<?= htmlspecialchars($contato->getId()) ?>">
                     <button type="button">Editar</button>
                 </a>
-                <form method="post" action="?controller=pessoa&action=delete&id=<?= htmlspecialchars($contao->getId()) ?>" style="display:inline;" onsubmit="return confirm('Você quer mesmo deletar essa Pessoa?');">
+                <form method="post" action="?controller=contato&action=delete&id=<?= htmlspecialchars($contato->getId()) ?>" style="display:inline;" onsubmit="return confirm('Você quer mesmo deletar esse Contato?');">
                     <button type="submit">Deletar</button>
                 </form>
             </td>
