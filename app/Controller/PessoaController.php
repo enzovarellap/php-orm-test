@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Controller;
+namespace src\Controller;
 
-use app\Model\Pessoa;
+use src\Model\Pessoa;
 
 class PessoaController
 {
