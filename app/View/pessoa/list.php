@@ -17,6 +17,9 @@
                 <a href="?controller=pessoa&action=edit&id=<?= htmlspecialchars($pessoa->getId()) ?>">
                     <button type="button">Editar</button>
                 </a>
+                <form method="post" action="?controller=pessoa&action=delete&id=<?= htmlspecialchars($pessoa->getId()) ?>" style="display:inline;" onsubmit="return confirm('Você quer mesmo deletar essa Pessoa?');">
+                    <button type="submit">Deletar</button>
+                </form>
             </td>
         </tr>
     <?php endforeach; ?>

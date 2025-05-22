@@ -82,6 +82,22 @@ class PessoaController
 
     public function delete($id)
     {
+        $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($id);
+        if (!$pessoa) {
+            header('HTTP/1.0 404 Not Found');
+            echo 'Pessoa not found';
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->entityManager->remove($pessoa);
+            $this->entityManager->flush();
+            header('Location: ?controller=pessoa&action=list');
+            exit;
+        }
+
+        echo 'Invalid request method.';
+        exit;
     }
 
 }
