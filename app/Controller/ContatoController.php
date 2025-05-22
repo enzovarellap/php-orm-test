@@ -19,13 +19,22 @@ class ContatoController
 
     public function create()
     {
+        $pessoas = $this->entityManager->getRepository(\src\Model\Pessoa::class)->findAll();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $tipo = $_POST['tipo'] ?? '';
+            $tipo = isset($_POST['tipo']) ? (bool)$_POST['tipo'] : null;
             $descricao = $_POST['descricao'] ?? '';
             $pessoaId = $_POST['pessoa_id'] ?? '';
 
-            if (empty($tipo) || empty($descricao) || empty($pessoaId)) {
-                $error = 'Tipo, Descrição e Pessoa ID são obrigatórios.';
+            if ($tipo === null || empty($descricao) || empty($pessoaId)) {
+                $error = 'Tipo, Descrição e Pessoa são obrigatórios.';
+                include __DIR__ . '/../View/contato/create.php';
+                return;
+            }
+
+            $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($pessoaId);
+            if (!$pessoa) {
+                $error = 'Pessoa inválida.';
                 include __DIR__ . '/../View/contato/create.php';
                 return;
             }
@@ -33,7 +42,7 @@ class ContatoController
             $contato = new \src\Model\Contato();
             $contato->setTipo($tipo);
             $contato->setDescricao($descricao);
-            $contato->setPessoaId($pessoaId);
+            $contato->setPessoa($pessoa);
 
             $this->entityManager->persist($contato);
             $this->entityManager->flush();
