@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Model;
+namespace src\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -48,6 +48,10 @@ class Pessoa
     public function getCpf(): string
     {
         return $this->cpf;
+    }
+
+    public function getFormatedCpf(): string {
+        return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $this->cpf);
     }
 
     public function setCpf(string $cpf): void
