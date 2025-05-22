@@ -6,9 +6,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-
-
-
     <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-8">
         <div class="w-full max-w-3xl bg-white rounded-lg shadow p-8">
             <div class="px-4 sm:px-6 lg:px-8">
@@ -61,8 +58,6 @@
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
-
-                                    <!-- More people... -->
                                     </tbody>
                                 </table>
                             </div>
