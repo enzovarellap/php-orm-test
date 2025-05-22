@@ -1,9 +1,30 @@
-<form method="post" action="?controller=pessoa&action=create">
-    <label for="nome">Name:</label>
-    <input type="text" id="nome" name="nome" required>
-    <br>
-    <label for="cpf">CPF:</label>
-    <input type="text" id="cpf" name="cpf" required pattern="\d{11}">
-    <br>
-    <button type="submit">Create Pessoa</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 py-8">
+        <div class="w-full max-w-md bg-white rounded-lg shadow p-8">
+            <h1 class="text-2xl font-bold mb-6 text-center">Criar Pessoa</h1>
+            <form method="post" action="?controller=pessoa&action=create" class="space-y-6">
+                <div>
+                    <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+                    <input type="text" id="nome" name="nome" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" required pattern="\d{11}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit"
+                        class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                    Criar Pessoa
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
