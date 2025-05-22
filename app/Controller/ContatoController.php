@@ -2,6 +2,9 @@
 
 namespace src\Controller;
 
+use src\Model\Contato;
+use src\Model\Pessoa;
+
 class ContatoController
 {
     private $entityManager;
@@ -11,15 +14,15 @@ class ContatoController
         $this->entityManager = $entityManager;
     }
 
-    public function list()
+    public function list(): void
     {
-        $contatos = $this->entityManager->getRepository(\src\Model\Contato::class)->findAll();
+        $contatos = $this->entityManager->getRepository(Contato::class)->findAll();
         include __DIR__ . '/../View/contato/list.php';
     }
 
-    public function create()
+    public function create(): void
     {
-        $pessoas = $this->entityManager->getRepository(\src\Model\Pessoa::class)->findAll();
+        $pessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tipo = isset($_POST['tipo']) ? (bool)$_POST['tipo'] : null;
@@ -32,14 +35,14 @@ class ContatoController
                 return;
             }
 
-            $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($pessoaId);
+            $pessoa = $this->entityManager->getRepository(Pessoa::class)->find($pessoaId);
             if (!$pessoa) {
                 $error = 'Pessoa inválida.';
                 include __DIR__ . '/../View/contato/create.php';
                 return;
             }
 
-            $contato = new \src\Model\Contato();
+            $contato = new Contato();
             $contato->setTipo($tipo);
             $contato->setDescricao($descricao);
             $contato->setPessoa($pessoa);
@@ -54,10 +57,10 @@ class ContatoController
         include __DIR__ . '/../View/contato/create.php';
     }
 
-    public function edit(int $id)
+    public function edit(int $id): void
     {
-        $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
-        $pessoas = $this->entityManager->getRepository(\src\Model\Pessoa::class)->findAll();
+        $contato = $this->entityManager->getRepository(Contato::class)->find($id);
+        $pessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
 
         if (!$contato) {
             header('HTTP/1.0 404 Not Found');
@@ -76,7 +79,7 @@ class ContatoController
                 return;
             }
 
-            $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($pessoaId);
+            $pessoa = $this->entityManager->getRepository(Pessoa::class)->find($pessoaId);
             if (!$pessoa) {
                 $error = 'Pessoa inválida.';
                 include __DIR__ . '/../View/contato/edit.php';
@@ -100,7 +103,7 @@ class ContatoController
 
     public function delete(int $id): void
     {
-        $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
+        $contato = $this->entityManager->getRepository(Contato::class)->find($id);
         if (!$contato) {
             header('HTTP/1.0 404 Not Found');
             echo 'Contato não encontrado';
@@ -121,7 +124,7 @@ class ContatoController
 
     public function show($id)
     {
-        $contato = $this->entityManager->getRepository(\src\Model\Contato::class)->find($id);
+        $contato = $this->entityManager->getRepository(Contato::class)->find($id);
         if (!$contato) {
             header('HTTP/1.0 404 Not Found');
             echo 'Contato não encontrado';

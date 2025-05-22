@@ -13,13 +13,13 @@ class PessoaController
         $this->entityManager = $entityManager;
     }
 
-    public function list()
+    public function list(): void
     {
         $pessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
         include __DIR__ . '/../View/pessoa/list.php';
     }
 
-    public function create()
+    public function create(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = $_POST['nome'] ?? '';
@@ -31,7 +31,7 @@ class PessoaController
                 return;
             }
 
-            $pessoa = new \src\Model\Pessoa();
+            $pessoa = new Pessoa();
             $pessoa->setNome($nome);
             $pessoa->setCpf($cpf);
 
@@ -45,7 +45,7 @@ class PessoaController
         include __DIR__ . '/../View/pessoa/create.php';
     }
 
-    public function edit($id)
+    public function edit($id): void
     {
         $pessoa = $this->entityManager->getRepository(Pessoa::class)->find($id);
         if (!$pessoa) {
@@ -76,13 +76,13 @@ class PessoaController
         include __DIR__ . '/../View/pessoa/edit.php';
     }
 
-    public function show($id)
+    public function show(int $id): void
     {
     }
 
-    public function delete($id)
+    public function delete(int $id): void
     {
-        $pessoa = $this->entityManager->getRepository(\src\Model\Pessoa::class)->find($id);
+        $pessoa = $this->entityManager->getRepository(Pessoa::class)->find($id);
         if (!$pessoa) {
             header('HTTP/1.0 404 Not Found');
             echo 'Pessoa not found';
