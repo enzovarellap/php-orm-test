@@ -42,6 +42,11 @@ class Contato
         $this->tipo = $tipo;
     }
 
+    public function getFormatedTipo(): string
+    {
+        return $this->tipo ? 'Telefone' : 'Email';
+    }
+
     public function getDescricao(): string
     {
         return $this->descricao;
@@ -52,14 +57,14 @@ class Contato
         $this->descricao = $descricao;
     }
 
-    public function getPessoaId(): int
+    public function getPessoa(): Pessoa
     {
-        return $this->pessoaId;
+        return $this->pessoa;
     }
 
-    public function setPessoaId(int $pessoaId): void
+    public function setPessoa(Pessoa $pessoa): void
     {
-        $this->pessoaId = $pessoaId;
+        $this->pessoa = $pessoa;
     }
 
 
