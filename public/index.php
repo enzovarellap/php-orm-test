@@ -11,7 +11,7 @@ $action = $_GET['action'] ?? 'list';
 
 switch ($controller) {
     case 'pessoa':
-        $ctrl = new \app\Controller\PessoaController($entityManager);
+        $ctrl = new \src\Controller\PessoaController($entityManager);
         break;
     // Add other controllers here
     default:
