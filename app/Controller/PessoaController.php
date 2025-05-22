@@ -25,7 +25,6 @@ class PessoaController
             $nome = $_POST['nome'] ?? '';
             $cpf = $_POST['cpf'] ?? '';
 
-            // Basic validation (add more as needed)
             if (empty($nome) || empty($cpf)) {
                 $error = 'Name and CPF are required.';
                 include __DIR__ . '/../View/pessoa/create.php';
@@ -39,7 +38,6 @@ class PessoaController
             $this->entityManager->persist($pessoa);
             $this->entityManager->flush();
 
-            // Redirect to list or show success
             header('Location: ?controller=pessoa&action=list');
             exit;
         }
@@ -49,6 +47,33 @@ class PessoaController
 
     public function edit($id)
     {
+        $pessoa = $this->entityManager->getRepository(Pessoa::class)->find($id);
+        if (!$pessoa) {
+            header('HTTP/1.0 404 Not Found');
+            echo 'Pessoa not found';
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nome = $_POST['nome'] ?? '';
+            $cpf = $_POST['cpf'] ?? '';
+
+            if (empty($nome) || empty($cpf)) {
+                $error = 'Name and CPF are required.';
+                include __DIR__ . '/../View/pessoa/edit.php';
+                return;
+            }
+
+            $pessoa->setNome($nome);
+            $pessoa->setCpf($cpf);
+
+            $this->entityManager->flush();
+
+            header('Location: ?controller=pessoa&action=list');
+            exit;
+        }
+
+        include __DIR__ . '/../View/pessoa/edit.php';
     }
 
     public function show($id)
