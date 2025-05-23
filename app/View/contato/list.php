@@ -18,6 +18,22 @@
                         <button  type="button" class=" block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adcionar contato</button>
                     </a>
                 </div>
+                <div class="justify-end">
+                    <form method="get" action="" class="mb-6 flex items-center gap-2">
+                        <input type="hidden" name="controller" value="contato">
+                        <input type="hidden" name="action" value="list">
+                        <input
+                            type="text"
+                            name="search"
+                            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+                            placeholder="Search by description"
+                            class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                            Search
+                        </button>
+                    </form>
+                </div>
                 <div class="mt-8 flow-root">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">

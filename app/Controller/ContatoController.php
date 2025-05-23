@@ -16,7 +16,20 @@ class ContatoController
 
     public function list(): void
     {
-        $contatos = $this->entityManager->getRepository(Contato::class)->findAll();
+        $search = $_GET['search'] ?? '';
+        $repo = $this->entityManager->getRepository(Contato::class);
+
+        if ($search) {
+            $qb = $this->entityManager->createQueryBuilder();
+            $qb->select('c')
+                ->from(Contato::class, 'c')
+                ->where('c.descricao LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+            $contatos = $qb->getQuery()->getResult();
+        } else {
+            $contatos = $repo->findAll();
+        }
+
         include __DIR__ . '/../View/contato/list.php';
     }
 
