@@ -41,8 +41,9 @@ docker-compose exec app composer install
 ```
 - To create the database schema with Doctrine:
 ```sh
-docker-compose exec app vendor/bin/doctrine orm:schema-tool:create
+docker-compose exec app php bin/doctrine orm:schema-tool:create
 ```
+
 
 ### Manual setup (without Docker)
 If you prefer to run locally:
