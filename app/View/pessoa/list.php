@@ -15,7 +15,7 @@
                         <p class="mt-2 text-sm text-gray-700">Listagem de pessoas cadastradas no sistema</p>
                     </div>
                     <a class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none" href="?controller=pessoa&action=create">
-                        <button  type="button" class=" block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adcionar contato</button>
+                        <button  type="button" class=" block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adicionar pessoa</button>
                     </a>
                 </div>
                 <div class="justify-end">
@@ -59,11 +59,11 @@
                                             <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500"><?= htmlspecialchars($pessoa->getNome()) ?></td>
                                             <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500"><?= htmlspecialchars($pessoa->getFormatedCpf()) ?></td>
                                             <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
-                                                <a href="?controller=contato&action=edit&id=<?= htmlspecialchars($pessoa->getId()) ?>" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                                <a href="?controller=pessoa&action=edit&id=<?= htmlspecialchars($pessoa->getId()) ?>" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                                             </td>
                                             <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
                                                 <form method="post"
-                                                      action="?controller=contato&action=delete&id=<?= htmlspecialchars($pessoa->getId()) ?>"
+                                                      action="?controller=pessoa&action=delete&id=<?= htmlspecialchars($pessoa->getId()) ?>"
                                                       onsubmit="return confirm('Você quer mesmo deletar esse Contato?');">
                                                     <button type="submit" class="text-red-600 hover:text-red-900">
                                                         Deletar
