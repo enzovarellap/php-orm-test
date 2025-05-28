@@ -14,11 +14,18 @@
                         <h1 class="text-base font-semibold text-gray-900">Contatos</h1>
                         <p class="mt-2 text-sm text-gray-700">Listagem de contatos disponíveis no sistema e respectivas pessoas</p>
                     </div>
-                    <a class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none" href="?controller=contato&action=create">
-                        <button  type="button" class=" block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adcionar contato</button>
-                    </a>
+                    <div class="flex sm:flex-auto sm:justify-end gap-4">
+                        <a class="mt-4 sm:mt-0 sm:flex-none" href="?controller=contato&action=create">
+                            <button  type="button" class=" block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adcionar contato</button>
+                        </a>
+                        <a class="mt-4 sm:mt-0 sm:flex-none" href="?controller=pessoa&action=list">
+                            <button  type="button" class=" block rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ver Pessoas</button>
+                        </a>
+
+                    </div>
+
                 </div>
-                <div class="justify-end">
+                <div class="justify-end my-4 max-w-md">
                     <form method="get" action="" class="mb-6 flex items-center gap-2">
                         <input type="hidden" name="controller" value="contato">
                         <input type="hidden" name="action" value="list">
@@ -29,9 +36,7 @@
                             placeholder="Pesquisar por descrição"
                             class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                            Pesquisar
-                        </button>
+                        <button  type="button" class=" block rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pesquisar </button>
                     </form>
                 </div>
                 <div class="mt-8 flow-root">
