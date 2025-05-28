@@ -30,7 +30,7 @@ $dbParams = [
 
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [__DIR__.'/app'],
+    paths: [__DIR__.'/app/Model'],
     isDevMode: $_ENV['APP_ENV'] === 'dev',
 );
 
