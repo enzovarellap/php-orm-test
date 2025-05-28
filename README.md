@@ -13,8 +13,9 @@ A simple PHP project for managing people and contacts, using Composer and Doctri
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
+   git clone https://github.com/enzovarellap/php-orm-test.git
+   cd php-orm-test
+   ```
 
 
 2. **Copy environment file**
