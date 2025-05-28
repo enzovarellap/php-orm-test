@@ -26,11 +26,11 @@
                             type="text"
                             name="search"
                             value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
-                            placeholder="Search by description"
+                            placeholder="Pesquisar por descrição"
                             class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                            Search
+                            Pesquisar
                         </button>
                     </form>
                 </div>
