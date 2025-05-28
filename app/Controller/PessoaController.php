@@ -15,7 +15,20 @@ class PessoaController
 
     public function list(): void
     {
-        $pessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
+        $search = $_GET['search'] ?? '';
+        $repo = $this->entityManager->getRepository(Pessoa::class);
+
+        if ($search) {
+            $qb = $this->entityManager->createQueryBuilder();
+            $qb->select('p')
+                ->from(Pessoa::class, 'p')
+                ->where('p.nome LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
+            $pessoas = $qb->getQuery()->getResult();
+        } else {
+            $pessoas = $repo->findAll();
+        }
+
         include __DIR__ . '/../View/pessoa/list.php';
     }
 
