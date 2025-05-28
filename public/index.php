@@ -7,7 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once "../bootstrap.php";
 
 
-$controller = $_GET['controller'] ?? 'contato';
+$controller = $_GET['controller'] ?? 'pessoa';
 $action = $_GET['action'] ?? 'list';
 
 switch ($controller) {
